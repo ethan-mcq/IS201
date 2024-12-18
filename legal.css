@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Active tab styles */
+ul li a.active-tab {
+  @apply text-white;
+  position: relative;
+}
+
+ul li a.active-tab::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  bottom: -2px;
+  left: 0;
+}
+
+ul li a.non-active {
+  @apply text-white;
+  position: relative;
+}
+
+ul li a.non-active:hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  bottom: -2px;
+  left: 0;
+  animation: slide-in 0.3s forwards;
+}
+
+@keyframes slide-in {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+body {
+  @apply font-sans font-thin p-12 bg-gray-200;
+}
+
+header {
+  @apply bg-white px-12 py-12 flex justify-between items-center;
+}
+
+header a {
+  @apply font-bold text-xl tracking-wider;
+}
+
+header ul {
+  @apply hidden md:flex uppercase text-sm;
+}
+
+header ul li {
+  @apply ml-8;
+}
+
+header ul li a {
+  @apply text-gray-600;
+}
+
+main {
+  @apply w-full h-screen relative flex items-center;
+}
+
+main img {
+  @apply absolute top-0 left-0 w-full h-full object-cover;
+}
+
+main div {
+  @apply relative z-10 px-24 text-center;
+}
+
+main h2 {
+  @apply mb-2 text-white uppercase text-2xl md:text-5xl leading-tight tracking-wide font-normal;
+}
+
+main p {
+  @apply text-white mb-6;
+}
+
+main a {
+  @apply inline-block uppercase bg-white py-3 px-6 text-xs;
+}
+
+footer {
+  @apply bg-white text-center py-4;
+}
+
+footer hr {
+  @apply border-gray-300 my-4;
+}
+
+footer a {
+  @apply text-gray-600;
+}
