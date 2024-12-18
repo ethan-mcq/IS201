@@ -4,17 +4,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Genechat</title>
-    <!-- Favicon -->
-    <link rel="icon" href="/logo-only.png" />
-    <!-- CSS -->
-    <link href="public/output.css" rel="stylesheet" />
+    <link rel="icon" href="ref_images/logo-only.png" />
+    <link href="dist/output.css" rel="stylesheet">
   </head>
-  <body>
-    <!-- Root Element -->
-    <div id="root"></div>
-    <!-- React will render your app here -->
+  <body class="font-sans font-thin p-20 bg-gray-900 text-gray-300">
+    <header class="bg-gray-800 bg-opacity-75 px-8 py-8 flex justify-between items-center rounded-lg overflow-hidden">
+      <img src="ref_images/logo.png" alt="Genechat Logo" class="h-12">
+      <ul class="hidden md:flex lowercase text-sm">
+        <li>
+          <a href="index.html" class="text-gray-300 hover:text-white active-tab">Home</a>
+        </li>
+        <li class="ml-8">
+          <a href="pricing.html" class="text-gray-300 hover:text-white non-active">Pricing</a>
+        </li>
+        <li class="ml-8">
+          <a href="login.html" class="text-gray-300 hover:text-white non-active">Login + Chat</a>
+        </li>
+      </ul>
+    </header>
+    <main class="w-full h-screen relative flex items-center overflow-hidden rounded-lg mt-4">
+      <img src="ref_images/dna_landing.webp" class="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
+      <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 text-center bg-gray-800 bg-opacity-75 p-6 rounded-lg">
+        <h2 class="mb-2 text-white uppercase text-2xl md:text-5xl leading-tight tracking-wide font-normal">Your research, faster.</h2>
+        <a href="login.html" class="inline-block uppercase bg-white hover:bg-gray-200 py-3 px-6 text-xs text-gray-900 rounded-lg">Get started</a>
+      </div>
+    </main>
 
-    <!-- Scripts -->
-    <script type="module" src="index.jsx"></script>
+
+    <section class="flex items-center mt-8">
+      <img src="ref_images/logo.png" alt="Genechat Logo" class="h-16 mr-4">
+      <div class="text-gray-300">
+        <p class="text-lg">Accelerate your genetic understanding and research with our cutting-edge AI powered resources.</p>
+      </div>
+    </section>
+
+    <section class="bg-gray-800 bg-opacity-75 px-8 py-8 mt-8 rounded-lg overflow-hidden flex items-center">
+      <div class="w-1/4 p-4">
+        <img src="ref_images/analysis.png" alt="Description" class="w-full h-auto rounded-lg">
+      </div>
+      <div class="w-3/4 p-4 text-gray-300">
+        <h3 class="text-2xl font-semibold mb-4">Understanding genetic test results can be hard.</h3>
+        <p>Consumer test results are often presented in medical jargon, making it challenging to </p>
+        <p>understand the details and implications.</p>
+      </div>
+    </section>
+
+    <section class="bg-gray-800 bg-opacity-75 px-8 py-8 mt-8 rounded-lg overflow-hidden flex items-center">
+      <div class="w-1/4 p-4">
+        <img src="ref_images/jigsaw.png" alt="Description" class="w-full h-auto rounded-lg">
+      </div>
+      <div class="w-2/3 p-4 text-gray-300">
+        <h3 class="text-2xl font-semibold mb-4">Decipher the puzzle.</h3>
+        <p>With our genetic database and our AI chat buddy, you can </p>
+        <p>understand your test results in seconds.</p>
+      </div>
+    </section>
+
+    <section class="bg-gray-800 bg-opacity-75 px-8 py-8 mt-8 mb-8 rounded-lg overflow-hidden flex items-center">
+      <div class="w-1/4 p-4">
+        <img src="ref_images/advice.png" alt="Description" class="w-full h-auto rounded-lg">
+      </div>
+      <div class="w-3/4 p-4 text-gray-300">
+        <h3 class="text-2xl font-semibold mb-4">Consult your doctor.</h3>
+        <p>With a preliminary understanding of your results, you can be informed to ask important questions</p>
+        <p>to your physician about care or necessity to take action.</p>
+      </div>
+    </section>
+
+    <div class="bg-gray-800 text-gray-500 p-4 px-12 py-8 flex flex-wrap">
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0">
+        <a href="index.html" class="hover:text-white">home</a>
+        <span class="px-4">|</span>
+        <a href="pricing.html" class="hover:text-white">pricing</a>
+        <span class="px-4">|</span>
+        <a href="legal.html" class="hover:text-white">legal</a>
+        <span class="px-4">|</span>
+        <a href="login.html" class="hover:text-white">login + chat</a>
+      </div>
+      <div class="w-full lg:w-1/2 text-center lg:text-right">
+        <a href="https://github.com/ethan-mcq/startup" class="hover:text-white">GitHub</a>
+        <span class="px-4">|</span>
+        &copy; 2024
+      </div>
+    </div>
   </body>
 </html>

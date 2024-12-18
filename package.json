@@ -1,21 +1,9 @@
 {
-  "name": "service",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "openai": "^4.76.1"
-  },
-  "description": "",
   "devDependencies": {
-    "vite": "^6.0.3"
+    "tailwindcss": "^3.4.12"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47"
   }
 }
