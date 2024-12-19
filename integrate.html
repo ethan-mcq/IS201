@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IS201 - Flappy Bird</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <style>
+      canvas {
+        display: block;
+        background-color: #70c5ce;
+        margin: 20px auto;
+        border: 2px solid #000;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #1f2937; /* Gray-800 */
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+      }
+      .button:hover {
+        background-color: #374151; /* Gray-700 */
+      }
+      .reset-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+        background-color: #dc2626; /* Red-600 */
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+      .reset-button:hover {
+        background-color: #b91c1c; /* Red-700 */
+      }
+    </style>
+  </head>
+  <body class="font-sans font-thin p-20 bg-gray-900 text-gray-300">
+    <header class="bg-gray-800 bg-opacity-75 px-8 py-8 flex justify-between items-center rounded-lg overflow-hidden">
+      <ul class="hidden md:flex lowercase text-sm">
+        <li>
+          <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+        </li>
+        <li class="ml-8">
+          <a href="tableau.html" class="text-gray-300 hover:text-white">scRNA-SEQ</a>
+        </li>
+        <li class="ml-8">
+          <a href="integrate.html" class="text-gray-300 hover:text-white active-tab">flap birdy</a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="flex flex-col justify-center items-center h-screen relative">
+      <h1 class="text-white text-xl mb-6">Flappy Bird Game</h1>
+      <button id="startButton" class="button">Start Game</button>
+      <canvas id="gameCanvas" width="480" height="640" style="display: none;"></canvas>
+      <button id="restartButton" class="button" style="display: none;">Restart Game</button>
+      <button id="resetButton" class="reset-button" style="display: none;">Reset Game</button>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-500 px-12 py-8 flex flex-wrap">
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0">
+        <a href="index.html" class="hover:text-white">home</a>
+        <span class="px-4">|</span>
+        <a href="tableau.html" class="hover:text-white">scRNA-SEQ</a>
+        <span class="px-4">|</span>
+        <a href="integrate.html" class="hover:text-white">flap birdy</a>
+      </div>
+      <div class="w-full lg:w-1/2 text-center lg:text-right">
+        <a href="https://github.com/ethan-mcq/ethan-mcq.github.io" class="hover:text-white">GitHub for stylesheet (look in dist/)</a>
+        <span class="px-4">|</span>
+        &copy; 2024
+      </div>
+    </footer>
+
+    <script>
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+      const startButton = document.getElementById("startButton");
+      const restartButton = document.getElementById("restartButton");
+      const resetButton = document.getElementById("resetButton");
+
+      let bird = { x: 50, y: canvas.height / 2, radius: 10, gravity: 0.1, lift: -canvas.height * 0.006, velocity: 0 };
+      let pipes = [];
+      let pipeWidth = 50;
+      let pipeGap = 150;
+      let pipeSpeed = 2;
+      let frame = 0;
+      let score = 0;
+      let gameOver = false;
+      let gameStarted = false;
+
+      // Start game
+      startButton.addEventListener("click", () => {
+        startButton.style.display = "none";
+        canvas.style.display = "block";
+        resetButton.style.display = "block";
+        restartButton.style.display = "none";
+        resetGame();
+        gameStarted = true;
+        loop();
+      });
+
+      // Restart game
+      restartButton.addEventListener("click", () => {
+        restartButton.style.display = "none";
+        resetGame();
+        gameStarted = true;
+        loop();
+      });
+
+      // Reset game with reset button
+      resetButton.addEventListener("click", () => {
+        resetGame();
+        gameStarted = true;
+        loop(); // Start the game loop
+        restartButton.style.display = "none"; // Ensure restart button is hidden
+      });
+
+
+      // Flap on canvas click
+      canvas.addEventListener("click", () => {
+        if (gameStarted && !gameOver) {
+          bird.velocity = bird.lift;
+        }
+      });
+
+      // Reset game variables
+      function resetGame() {
+        bird.y = canvas.height / 2;
+        bird.velocity = 0;
+        pipes = [];
+        score = 0;
+        frame = 0;
+        gameOver = false;
+      }
+
+      // Create pipes
+      function createPipe() {
+        let topHeight = Math.random() * (canvas.height / 2);
+        pipes.push({
+          x: canvas.width,
+          top: topHeight,
+          bottom: topHeight + pipeGap
+        });
+      }
+
+      // Update game
+      function update() {
+        if (gameOver) {
+          gameStarted = false;
+          restartButton.style.display = "block";
+          return;
+        }
+
+        bird.velocity += bird.gravity;
+        bird.y += bird.velocity;
+
+        // Bird boundary collision
+        if (bird.y + bird.radius > canvas.height || bird.y - bird.radius < 0) {
+          gameOver = true;
+        }
+
+        // Create pipes
+        if (frame % 100 === 0) createPipe();
+
+        // Move and remove pipes
+        pipes = pipes.filter(pipe => {
+          pipe.x -= pipeSpeed;
+          return pipe.x + pipeWidth >= 0;
+        });
+
+        // Check collisions and update score
+        pipes.forEach(pipe => {
+          // Pipe collision
+          if (
+            bird.x + bird.radius > pipe.x &&
+            bird.x - bird.radius < pipe.x + pipeWidth &&
+            (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.bottom)
+          ) {
+            gameOver = true;
+          }
+
+          // Update score
+          if (pipe.x + pipeWidth === bird.x) {
+            score++;
+          }
+        });
+
+        frame++;
+      }
+
+      // Draw game
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw bird
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw pipes
+        pipes.forEach(pipe => {
+          ctx.fillStyle = "green";
+          ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top); // Top pipe
+          ctx.fillRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom); // Bottom pipe
+        });
+
+        // Draw score
+        ctx.fillStyle = "white";
+        ctx.font = "20px Arial";
+        ctx.fillText(`Score: ${score}`, 10, 30);
+
+        // Draw game over
+        if (gameOver) {
+          ctx.fillStyle = "red";
+          ctx.font = "30px Arial";
+          ctx.fillText("Game Over", canvas.width / 2 - 70, canvas.height / 2);
+          ctx.fillText(`Score: ${score}`, canvas.width / 2 - 50, canvas.height / 2 + 40);
+        }
+      }
+
+      // Game loop
+      function loop() {
+        if (gameOver) return;
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+    </script>
+  </body>
+</html>

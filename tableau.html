@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IS201</title>
+    <link href="dist/output.css" rel="stylesheet">
+  </head>
+  <body class="font-sans font-thin p-20 bg-gray-900 text-gray-300">
+    <header class="bg-gray-800 bg-opacity-75 px-8 py-8 flex justify-between items-center rounded-lg overflow-hidden">
+      <ul class="hidden md:flex lowercase text-sm">
+        <li>
+          <a href="index.html" class="text-gray-300 hover:text-white non-active">Home</a>
+        </li>
+        <li class="ml-8">
+          <a href="tableau.html" class="text-gray-300 hover:text-white active-tab">scRNA-SEQ</a>
+        </li>
+        <li class="ml-8">
+          <a href="integrate.html" class="text-gray-300 hover:text-white non-active">flap birdy</a>
+        </li>
+      </ul>
+    </header>
+
+      <!-- Workflow Steps Section -->
+      <section class="bg-gray-800 bg-opacity-75 px-8 py-8 mt-8 rounded-lg overflow-hidden flex items-center">
+        <a href="https://nanoporetech.com/resource-centre/workflow-single-cell-transcriptomics">Click on me to get to scRNA-seq workflow</a>
+        <div class="w-3/4 p-4 text-gray-300">
+          <ol>
+            <li>
+              <strong>Obtain Barcoded cDNA</strong>
+              <ul>
+                <li> - Generate barcoded cDNA using the 10x Genomics platform.</li>
+                <li> - Prepare the cDNA using the Single Cell 3’ or 5’ Gene Expression kits.</li>
+                <li> - Use Visium Spatial Gene Expression kits for spatial transcriptomics.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Amplify and Purify cDNA</strong>
+              <ul>
+                <li> - Perform PCR amplification using biotinylated primers.</li>
+                <li> - Remove unbarcoded cDNA using streptavidin pulldown.</li>
+                <li> - Ensure efficient depletion of artifacts for high-quality sequencing.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Prepare Sequencing Library</strong>
+              <ul>
+                <li> - Use the Oxford Nanopore Ligation Sequencing Kit.</li>
+                <li> - Complete library preparation within approximately three hours.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Sequence on PromethION Platform</strong>
+              <ul>
+                <li> - Load the library onto a PromethION Flow Cell.</li>
+                <li> - Generate ~80M full-length, cell-assigned reads per flow cell.</li>
+                <li> - Use PromethION platforms for flexible throughput options.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Analyze Data</strong>
+              <ul>
+                <li> - Use the EPI2ME wf-single-cell pipeline for analysis.</li>
+                <li> - Obtain gene and isoform count matrices, UMAP plots, and BAM files.</li>
+                <li> - Leverage cloud or local compute options for workflow execution.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+    
+      <!-- YouTube Video Section -->
+      <section class="youtube-section bg-gray-800 bg-opacity-75 px-8 py-8 rounded-lg overflow-hidden mt-8 items-center">
+        <iframe 
+          class="w-full rounded-lg" 
+          width="560" 
+          height="560" 
+          src="https://www.youtube.com/embed/DzFaG0U_bMc" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </section>
+    
+      <!-- Tableau Section -->
+      <section class="tableau-section bg-gray-800 bg-opacity-75 px-8 py-8 rounded-lg overflow-hidden mt-8 items-center">
+        <h2>Difference between filtering for scRNA-seq workflows</h2>
+        <div class='tableauPlaceholder' id='viz1734567540551' style='position: relative; width: 100%;'>
+          <noscript>
+            <a href='#'>
+              <img alt='Dashboard 1' src='https://public.tableau.com/static/images/Ce/CellfilteringstrategyscRNA-Seq/Dashboard1/1_rss.png' style='border: none' />
+            </a>
+          </noscript>
+          <object class='tableauViz' style='display:none; width: 100%;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='CellfilteringstrategyscRNA-Seq/Dashboard1' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Ce/CellfilteringstrategyscRNA-Seq/Dashboard1/1.png' /> 
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+          </object>
+        </div>
+      </section>
+    
+    <script type='text/javascript'>
+      var divElement = document.getElementById('viz1734567540551');                    
+      var vizElement = divElement.getElementsByTagName('object')[0];                    
+      if (divElement.offsetWidth > 800) { 
+        vizElement.style.width = '1000px'; 
+        vizElement.style.height = '1027px'; 
+      } else if (divElement.offsetWidth > 500) { 
+        vizElement.style.width = '1000px'; 
+        vizElement.style.height = '1027px'; 
+      } else { 
+        vizElement.style.width = '100%'; 
+        vizElement.style.height = '727px'; 
+      }                     
+      var scriptElement = document.createElement('script');                    
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
+    
+
+    <footer class="bg-gray-800 text-gray-500 px-12 py-8 flex flex-wrap mt-8">
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0">
+        <a href="index.html" class="hover:text-white">home</a>
+        <span class="px-4">|</span>
+        <a href="tableau.html" class="hover:text-white">scRNA-SEQ</a>
+        <span class="px-4">|</span>
+        <a href="integrate.html" class="hover:text-white">flap birdy</a>
+      </div>
+      <div class="w-full lg:w-1/2 text-center lg:text-right">
+        <a href="https://github.com/ethan-mcq/ethan-mcq.github.io" class="hover:text-white">GitHub for stylesheet (look in dist/)</a>
+        <span class="px-4">|</span>
+        &copy; 2024
+      </div>
+    </footer>
+  </body>
+</html>
